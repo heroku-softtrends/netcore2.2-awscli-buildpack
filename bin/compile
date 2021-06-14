@@ -89,13 +89,16 @@ elif [ $STACK == "heroku-16" ]; then
    	else
    		apt_install libunwind8 libicu55
    	fi
-else
+elif [ $STACK == "heroku-18" ]; then
 	if [ $PROJECT_VERSION == "netcoreapp2.1" ]; then
 		apt_install libicu60 openssl1.0
    	else
    		apt_install libunwind8 libicu60 openssl1.0
    	fi
+else
+	apt_install libicu66 libssl1.1
 fi
+
 
 print "Installing dotnet"
 install_dotnet $BUILD_DIR $CACHE_DIR $NETCORE_VERSION
