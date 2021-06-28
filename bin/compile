@@ -42,20 +42,20 @@ print "Fetching AWS CLI into slug"
 #curl --progress-bar -o /tmp/awscli-bundle.zip "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip"
 curl --progress-bar -o /tmp/awscliv2.zip "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip"
 unzip -qq -d "$BUILD_DIR/vendor" /tmp/awscliv2.zip
-$BUILD_DIR/vendor li -a
 
 print "adding installer script into app/.profile.d"
 mkdir -p ${BUILD_DIR}/.profile.d
 cp $BP_DIR/profile/* $BUILD_DIR/.profile.d/
 cat <<EOF >${BUILD_DIR}/.profile.d/install_awscli.sh
-chmod +x /app/vendor/awscliv2/aws/install
-/app/vendor/awscliv2/aws/install -i /app/vendor/awscli -b /app/vendor/awscli/bin
+chmod +x /app/vendor/aws/install
+/app/vendor/aws/install -i /app/vendor/awscli -b /app/vendor/awscli/bin
 chmod u+x /app/vendor/awscli/bin/aws
 mkdir -p ~/.aws
 touch ~/.aws/credentials
 touch ~/.aws/config
 chmod +w ~/.aws/credentials
 chmod +w ~/.aws/config
+/app/vendor/awscli/bin/aws --version
 EOF
 chmod +x $BUILD_DIR/.profile.d/install_awscli.sh
 
