@@ -42,7 +42,7 @@ print "Fetching AWS CLI into slug"
 #curl --progress-bar -o /tmp/awscli-bundle.zip "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip"
 curl --progress-bar -o /tmp/awscliv2.zip "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip"
 unzip -qq -d "$BUILD_DIR/vendor" /tmp/awscliv2.zip
-/tmp/awscliv2 li -a
+$BUILD_DIR/vendor li -a
 
 print "adding installer script into app/.profile.d"
 mkdir -p ${BUILD_DIR}/.profile.d
